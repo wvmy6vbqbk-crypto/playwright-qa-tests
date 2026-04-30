@@ -1,12 +1,11 @@
 import { test, expect } from '@playwright/test';
+import { LoginPage } from './pages/loginPage';
 
 test('successful login', async ({ page }) => {
-  await page.goto('https://the-internet.herokuapp.com/login');
+  const loginPage = new LoginPage(page);
 
-  await page.fill('#username', 'tomsmith');
-  await page.fill('#password', 'SuperSecretPassword!');
-
-  await page.click('button[type="submit"]');
+  await loginPage.goto();
+  await loginPage.login('tomsmith', 'SuperSecretPassword!');
 
   await expect(page.locator('.flash.success')).toContainText(
     'You logged into a secure area!'
@@ -14,12 +13,10 @@ test('successful login', async ({ page }) => {
 });
 
 test('login fails with wrong password', async ({ page }) => {
-  await page.goto('https://the-internet.herokuapp.com/login');
+  const loginPage = new LoginPage(page);
 
-  await page.fill('#username', 'tomsmith');
-  await page.fill('#password', 'wrongpassword');
-
-  await page.click('button[type="submit"]');
+  await loginPage.goto();
+  await loginPage.login('tomsmith', 'wrongpassword');
 
   await expect(page.locator('.flash.error')).toContainText(
     'Your password is invalid!'
