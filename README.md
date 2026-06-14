@@ -1,65 +1,31 @@
-# Playwright QA Test Suite
+# Playwright QA Tests
 
-This project demonstrates end-to-end (E2E) testing using Playwright.
-
-## Overview
-
-The goal of this project is to simulate real user behavior in a browser and verify that core application flows work as expected.
-
-Tested application:
-https://the-internet.herokuapp.com/
+End-to-end test automation examples built with Playwright.
 
 ## Features
 
-- Login test (successful login)
-- Login test (invalid credentials)
-- Navigation test (homepage → login page)
-- Basic Page Object Model (POM) structure
+- Page Object Model
+- Login tests
+- Product sorting tests
+- Cart interaction tests
+- Checkout flow tests
+- Assertions with Playwright Test
+- GitHub-ready test structure
 
-## Tech Stack
+## Demo Application
 
-- Playwright
-- JavaScript
-- Node.js
+Tests are based on SauceDemo:
+https://www.saucedemo.com/
 
-## Project Structure
-tests/
-login.spec.js
-navigation.spec.js
-pages/
-loginPage.js
-
-## How to run the tests
+## Run Tests
 
 ```bash
 npm install
-npx playwright test
-To run tests with visible browser:
-npx playwright test --headed
-To open the test report:
-npx playwright show-report
+npx playwright test tests/saucedemo-checkout.spec.js
 
-What I focused on
-	•	Writing clear and maintainable test cases
-	•	Testing real user flows (login & navigation)
-	•	Using assertions to validate expected behavior
-	•	Structuring tests with Page Object Model for reusability
+Test Coverage
 
-Learning Outcome
-
-Through this project, I gained hands-on experience with:
-	•	End-to-end testing concepts
-	•	Playwright locators and assertions
-	•	Test structure and maintainability
-	•	Automation of user interactions in a browser
-
----
-
-# 🚀 Don't forget:
-
-Terminal:
-
-```bash
-git add README.md
-git commit -m "Update README"
-git push
+* Successful checkout
+* Invalid login
+* Product sorting
+* Remove product from cart
