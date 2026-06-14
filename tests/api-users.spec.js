@@ -44,4 +44,43 @@ test.describe('JSONPlaceholder API Tests', () => {
     expect(body.userId).toBe(1);
     expect(body).toHaveProperty('id');
   });
+    test('PUT update post returns updated resource', async ({ request }) => {
+    const response = await request.put('https://jsonplaceholder.typicode.com/posts/1', {
+      data: {
+        id: 1,
+        title: 'Updated QA Automation',
+        body: 'Updated by Playwright API test',
+        userId: 1,
+      },
+    });
+
+    expect(response.status()).toBe(200);
+
+    const body = await response.json();
+
+    expect(body.id).toBe(1);
+    expect(body.title).toBe('Updated QA Automation');
+    expect(body.body).toBe('Updated by Playwright API test');
+  });
+
+  test('PATCH update post title only', async ({ request }) => {
+    const response = await request.patch('https://jsonplaceholder.typicode.com/posts/1', {
+      data: {
+        title: 'Partially Updated Title',
+      },
+    });
+
+    expect(response.status()).toBe(200);
+
+    const body = await response.json();
+
+    expect(body.id).toBe(1);
+    expect(body.title).toBe('Partially Updated Title');
+  });
+
+  test('DELETE post returns success status', async ({ request }) => {
+    const response = await request.delete('https://jsonplaceholder.typicode.com/posts/1');
+
+    expect(response.status()).toBe(200);
+  });
 });
